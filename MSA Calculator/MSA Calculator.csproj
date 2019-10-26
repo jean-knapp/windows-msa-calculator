@@ -41,9 +41,8 @@
     <Reference Include="GlmNet">
       <HintPath>lib\GlmNet.dll</HintPath>
     </Reference>
-    <Reference Include="PMA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\PMAtoXML\PMA\bin\Release\PMA.dll</HintPath>
+    <Reference Include="PMA">
+      <HintPath>lib\PMA.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
