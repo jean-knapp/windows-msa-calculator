@@ -81,6 +81,12 @@
       <DependentUpon>CoordinateSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="HGT.cs" />
+    <Compile Include="HGTsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HGTsDialog.Designer.cs">
+      <DependentUpon>HGTsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadRouteFromPMA.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CoordinateSelector.resx">
       <DependentUpon>CoordinateSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HGTsDialog.resx">
+      <DependentUpon>HGTsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadRouteFromPMA.resx">
       <DependentUpon>LoadRouteFromPMA.cs</DependentUpon>

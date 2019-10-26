@@ -74,7 +74,7 @@ namespace MSA_Calculator
         // Objective:   Get the bounding box of the rectangle
         // Input:       (vec2[]) v:        vertices of the rectangle
         // Output:      (vec4) result:     bounding box
-        private static vec4 getBoundingBox(vec2[] v)
+        public static vec4 getBoundingBox(vec2[] v)
         {
             vec4 result = new vec4();
             result.w = (float)Math.Floor(Math.Min(Math.Min(Math.Min(v[0].x, v[1].x), v[2].x), v[3].x)); // start.x
@@ -139,7 +139,7 @@ namespace MSA_Calculator
         // Input:       (short) x:          longitude integer coordinate
         //              (short) y:          latitude integer coordinate
         // Output:      (string) result:    file path
-        private static string getFilePath(short x, short y)
+        public static string getFilePath(short x, short y)
         {
             // The file name contains 
             string i_abs = Math.Abs(x).ToString();

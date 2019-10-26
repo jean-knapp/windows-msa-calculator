@@ -65,14 +65,15 @@
             this.montainousHeightBox = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemSpinEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.calculateButton = new DevExpress.XtraBars.BarButtonItem();
+            this.downloadHGTsButtons = new DevExpress.XtraBars.BarButtonItem();
+            this.requiredFilesButton = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.statusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.downloadHGTsButtons = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.list)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
@@ -176,6 +177,7 @@
             this.list.Dock = System.Windows.Forms.DockStyle.Fill;
             this.list.Location = new System.Drawing.Point(0, 147);
             this.list.Name = "list";
+            this.list.OptionsBehavior.Editable = false;
             this.list.Size = new System.Drawing.Size(932, 420);
             this.list.TabIndex = 6;
             // 
@@ -243,9 +245,10 @@
             this.heightBox,
             this.montainousHeightBox,
             this.calculateButton,
-            this.downloadHGTsButtons});
+            this.downloadHGTsButtons,
+            this.requiredFilesButton});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 8;
+            this.ribbonControl1.MaxItemId = 9;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -327,6 +330,8 @@
             this.repositoryItemSpinEdit1.AutoHeight = false;
             this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit1.IsFloatValue = false;
+            this.repositoryItemSpinEdit1.Mask.EditMask = "N00";
             this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
             // 
             // heightBox
@@ -342,6 +347,8 @@
             this.repositoryItemSpinEdit2.AutoHeight = false;
             this.repositoryItemSpinEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit2.IsFloatValue = false;
+            this.repositoryItemSpinEdit2.Mask.EditMask = "N00";
             this.repositoryItemSpinEdit2.Name = "repositoryItemSpinEdit2";
             // 
             // montainousHeightBox
@@ -357,6 +364,8 @@
             this.repositoryItemSpinEdit3.AutoHeight = false;
             this.repositoryItemSpinEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit3.IsFloatValue = false;
+            this.repositoryItemSpinEdit3.Mask.EditMask = "N00";
             this.repositoryItemSpinEdit3.Name = "repositoryItemSpinEdit3";
             // 
             // calculateButton
@@ -365,6 +374,20 @@
             this.calculateButton.Id = 6;
             this.calculateButton.Name = "calculateButton";
             this.calculateButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.calculateButton_ItemClick);
+            // 
+            // downloadHGTsButtons
+            // 
+            this.downloadHGTsButtons.Caption = "Download HGTs";
+            this.downloadHGTsButtons.Id = 7;
+            this.downloadHGTsButtons.Name = "downloadHGTsButtons";
+            this.downloadHGTsButtons.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.downloadHGTsButtons_ItemClick);
+            // 
+            // requiredFilesButton
+            // 
+            this.requiredFilesButton.Caption = "Required files";
+            this.requiredFilesButton.Id = 8;
+            this.requiredFilesButton.Name = "requiredFilesButton";
+            this.requiredFilesButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.requiredFilesButton_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -396,6 +419,13 @@
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "MSA";
             // 
+            // ribbonPageGroup5
+            // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.downloadHGTsButtons);
+            this.ribbonPageGroup5.ItemLinks.Add(this.requiredFilesButton);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "ribbonPageGroup5";
+            // 
             // statusBar
             // 
             this.statusBar.ItemLinks.Add(this.statusLabel);
@@ -408,19 +438,6 @@
             // 
             this.ribbonPage6.Name = "ribbonPage6";
             this.ribbonPage6.Text = "ribbonPage6";
-            // 
-            // ribbonPageGroup5
-            // 
-            this.ribbonPageGroup5.ItemLinks.Add(this.downloadHGTsButtons);
-            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "ribbonPageGroup5";
-            // 
-            // downloadHGTsButtons
-            // 
-            this.downloadHGTsButtons.Caption = "Download HGTs";
-            this.downloadHGTsButtons.Id = 7;
-            this.downloadHGTsButtons.Name = "downloadHGTsButtons";
-            this.downloadHGTsButtons.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.downloadHGTsButtons_ItemClick);
             // 
             // ToolbarForm1
             // 
@@ -498,5 +515,6 @@
         private DevExpress.XtraBars.Ribbon.BackstageViewButtonItem backstageExitButton;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.BarButtonItem downloadHGTsButtons;
+        private DevExpress.XtraBars.BarButtonItem requiredFilesButton;
     }
 }

@@ -243,5 +243,11 @@ namespace MSA_Calculator
             MessageBox.Show("Download and extract the HGT files to \"" + Application.StartupPath + "\\hgts\\\"");
             System.Diagnostics.Process.Start("http://www.viewfinderpanoramas.org/Coverage%20map%20viewfinderpanoramas_org3.htm");
         }
+
+        private void requiredFilesButton_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            HGTsDialog dialog = new HGTsDialog(waypoints, int.Parse(radiusBox.EditValue.ToString()));
+            dialog.ShowDialog();
+        }
     }
 }
