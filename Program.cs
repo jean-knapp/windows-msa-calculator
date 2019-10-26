@@ -16,7 +16,7 @@ namespace MSA_Calculator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main(args));
+            Application.Run(new ToolbarForm1(args));
         }
     }
 }
