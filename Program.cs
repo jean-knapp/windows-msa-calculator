@@ -14,9 +14,15 @@ namespace MSA_Calculator
         [STAThread]
         static void Main(string[] args)
         {
+            if (Environment.OSVersion.Version.Major >= 6)
+                SetProcessDPIAware();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ToolbarForm1(args));
         }
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool SetProcessDPIAware();
     }
 }
