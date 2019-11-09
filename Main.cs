@@ -14,7 +14,7 @@ using PMA;
 
 namespace MSA_Calculator
 {
-    public partial class ToolbarForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class Main : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         List<vec2> waypoints = new List<vec2>();
         string[] args;
@@ -22,7 +22,7 @@ namespace MSA_Calculator
         XmlDocument doc;
         List<XmlNode> msas;
 
-        public ToolbarForm1(string[] args)
+        public Main(string[] args)
         {
             InitializeComponent();
 
@@ -209,7 +209,11 @@ namespace MSA_Calculator
 
         private void calculateButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            calculateMSA();
+            HGTsDialog dialog = new HGTsDialog(waypoints, int.Parse(radiusBox.EditValue.ToString()));
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                calculateMSA();
+            }
         }
 
         private void backstageNewButton_ItemClick(object sender, DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs e)
@@ -235,18 +239,6 @@ namespace MSA_Calculator
         private void manageWaypointsButton_ItemClick(object sender, ItemClickEventArgs e)
         {
             WaypointsDialog dialog = new WaypointsDialog(waypoints);
-            dialog.ShowDialog();
-        }
-
-        private void downloadHGTsButtons_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            MessageBox.Show("Download and extract the HGT files to \"" + Application.StartupPath + "\\hgts\\\"");
-            System.Diagnostics.Process.Start("http://www.viewfinderpanoramas.org/Coverage%20map%20viewfinderpanoramas_org3.htm");
-        }
-
-        private void requiredFilesButton_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            HGTsDialog dialog = new HGTsDialog(waypoints, int.Parse(radiusBox.EditValue.ToString()));
             dialog.ShowDialog();
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace MSA_Calculator
 {
-    partial class ToolbarForm1
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -65,13 +66,11 @@
             this.montainousHeightBox = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemSpinEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.calculateButton = new DevExpress.XtraBars.BarButtonItem();
-            this.downloadHGTsButtons = new DevExpress.XtraBars.BarButtonItem();
-            this.requiredFilesButton = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.repositoryItemProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.statusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -81,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -244,18 +244,17 @@
             this.radiusBox,
             this.heightBox,
             this.montainousHeightBox,
-            this.calculateButton,
-            this.downloadHGTsButtons,
-            this.requiredFilesButton});
+            this.calculateButton});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 9;
+            this.ribbonControl1.MaxItemId = 10;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemSpinEdit1,
             this.repositoryItemSpinEdit2,
-            this.repositoryItemSpinEdit3});
+            this.repositoryItemSpinEdit3,
+            this.repositoryItemProgressBar1});
             this.ribbonControl1.Size = new System.Drawing.Size(932, 147);
             this.ribbonControl1.StatusBar = this.statusBar;
             // 
@@ -274,21 +273,27 @@
             // 
             // backstageNewButton
             // 
+            this.backstageNewButton.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.backstageNewButton.Caption = "New";
+            this.backstageNewButton.Glyph = ((System.Drawing.Image)(resources.GetObject("backstageNewButton.Glyph")));
             this.backstageNewButton.Name = "backstageNewButton";
             this.backstageNewButton.Tag = "new";
             this.backstageNewButton.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.backstageNewButton_ItemClick);
             // 
             // backstageOpenButton
             // 
+            this.backstageOpenButton.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.backstageOpenButton.Caption = "Open from PMA File";
+            this.backstageOpenButton.Glyph = ((System.Drawing.Image)(resources.GetObject("backstageOpenButton.Glyph")));
             this.backstageOpenButton.Name = "backstageOpenButton";
             this.backstageOpenButton.Tag = "open";
             this.backstageOpenButton.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.backstageNewButton_ItemClick);
             // 
             // backstageSaveButton
             // 
+            this.backstageSaveButton.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.backstageSaveButton.Caption = "Save to PMA File";
+            this.backstageSaveButton.Glyph = ((System.Drawing.Image)(resources.GetObject("backstageSaveButton.Glyph")));
             this.backstageSaveButton.Name = "backstageSaveButton";
             this.backstageSaveButton.Tag = "save";
             this.backstageSaveButton.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.backstageNewButton_ItemClick);
@@ -314,6 +319,8 @@
             // 
             this.manageWaypointsButton.Caption = "Manage waypoints";
             this.manageWaypointsButton.Id = 2;
+            this.manageWaypointsButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("manageWaypointsButton.ImageOptions.Image")));
+            this.manageWaypointsButton.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("manageWaypointsButton.ImageOptions.LargeImage")));
             this.manageWaypointsButton.Name = "manageWaypointsButton";
             this.manageWaypointsButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageWaypointsButton_ItemClick);
             // 
@@ -322,7 +329,10 @@
             this.radiusBox.Caption = "Radius: ";
             this.radiusBox.Edit = this.repositoryItemSpinEdit1;
             this.radiusBox.EditValue = "10";
+            this.radiusBox.EditWidth = 96;
             this.radiusBox.Id = 3;
+            this.radiusBox.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("radiusBox.ImageOptions.Image")));
+            this.radiusBox.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("radiusBox.ImageOptions.LargeImage")));
             this.radiusBox.Name = "radiusBox";
             // 
             // repositoryItemSpinEdit1
@@ -339,7 +349,10 @@
             this.heightBox.Caption = "Safety Height: ";
             this.heightBox.Edit = this.repositoryItemSpinEdit2;
             this.heightBox.EditValue = "1000";
+            this.heightBox.EditWidth = 96;
             this.heightBox.Id = 4;
+            this.heightBox.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("heightBox.ImageOptions.Image")));
+            this.heightBox.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("heightBox.ImageOptions.LargeImage")));
             this.heightBox.Name = "heightBox";
             // 
             // repositoryItemSpinEdit2
@@ -356,7 +369,10 @@
             this.montainousHeightBox.Caption = "Montainous Safety Height: ";
             this.montainousHeightBox.Edit = this.repositoryItemSpinEdit3;
             this.montainousHeightBox.EditValue = "2000";
+            this.montainousHeightBox.EditWidth = 96;
             this.montainousHeightBox.Id = 5;
+            this.montainousHeightBox.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("montainousHeightBox.ImageOptions.Image")));
+            this.montainousHeightBox.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("montainousHeightBox.ImageOptions.LargeImage")));
             this.montainousHeightBox.Name = "montainousHeightBox";
             // 
             // repositoryItemSpinEdit3
@@ -372,59 +388,46 @@
             // 
             this.calculateButton.Caption = "Calculate";
             this.calculateButton.Id = 6;
+            this.calculateButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("calculateButton.ImageOptions.Image")));
+            this.calculateButton.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("calculateButton.ImageOptions.LargeImage")));
             this.calculateButton.Name = "calculateButton";
             this.calculateButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.calculateButton_ItemClick);
-            // 
-            // downloadHGTsButtons
-            // 
-            this.downloadHGTsButtons.Caption = "Download HGTs";
-            this.downloadHGTsButtons.Id = 7;
-            this.downloadHGTsButtons.Name = "downloadHGTsButtons";
-            this.downloadHGTsButtons.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.downloadHGTsButtons_ItemClick);
-            // 
-            // requiredFilesButton
-            // 
-            this.requiredFilesButton.Caption = "Required files";
-            this.requiredFilesButton.Id = 8;
-            this.requiredFilesButton.Name = "requiredFilesButton";
-            this.requiredFilesButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.requiredFilesButton_ItemClick);
             // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2,
             this.ribbonPageGroup3,
-            this.ribbonPageGroup4,
-            this.ribbonPageGroup5});
+            this.ribbonPageGroup4});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Home";
             // 
             // ribbonPageGroup2
             // 
+            this.ribbonPageGroup2.AllowTextClipping = false;
             this.ribbonPageGroup2.ItemLinks.Add(this.manageWaypointsButton);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Waypoints";
             // 
             // ribbonPageGroup3
             // 
+            this.ribbonPageGroup3.AllowTextClipping = false;
             this.ribbonPageGroup3.ItemLinks.Add(this.radiusBox);
             this.ribbonPageGroup3.ItemLinks.Add(this.heightBox);
             this.ribbonPageGroup3.ItemLinks.Add(this.montainousHeightBox);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            this.ribbonPageGroup3.Text = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "Search parameters";
             // 
             // ribbonPageGroup4
             // 
+            this.ribbonPageGroup4.AllowTextClipping = false;
             this.ribbonPageGroup4.ItemLinks.Add(this.calculateButton);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "MSA";
             // 
-            // ribbonPageGroup5
+            // repositoryItemProgressBar1
             // 
-            this.ribbonPageGroup5.ItemLinks.Add(this.downloadHGTsButtons);
-            this.ribbonPageGroup5.ItemLinks.Add(this.requiredFilesButton);
-            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "ribbonPageGroup5";
+            this.repositoryItemProgressBar1.Name = "repositoryItemProgressBar1";
             // 
             // statusBar
             // 
@@ -439,7 +442,7 @@
             this.ribbonPage6.Name = "ribbonPage6";
             this.ribbonPage6.Text = "ribbonPage6";
             // 
-            // ToolbarForm1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -452,7 +455,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "ToolbarForm1";
+            this.Name = "Main";
             this.Ribbon = this.ribbonControl1;
             this.StatusBar = this.statusBar;
             this.Text = "MSA Calculator";
@@ -464,6 +467,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -513,8 +517,6 @@
         private DevExpress.XtraBars.Ribbon.BackstageViewButtonItem backstageSaveButton;
         private DevExpress.XtraBars.Ribbon.BackstageViewItemSeparator backstageViewItemSeparator1;
         private DevExpress.XtraBars.Ribbon.BackstageViewButtonItem backstageExitButton;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
-        private DevExpress.XtraBars.BarButtonItem downloadHGTsButtons;
-        private DevExpress.XtraBars.BarButtonItem requiredFilesButton;
+        private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar1;
     }
 }

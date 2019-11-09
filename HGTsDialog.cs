@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using GlmNet;
 using System.IO;
+using System.Net;
+using System.IO.Compression;
 
 namespace MSA_Calculator
 {
@@ -17,6 +19,9 @@ namespace MSA_Calculator
     {
         int distance = 0;
         List<vec2> waypoints = new List<vec2>();
+        Queue<string> downloadList = new Queue<string>();
+        List<string> files = new List<string>();
+        WebClient client = new WebClient();
 
         public HGTsDialog(List<vec2> waypoints, int distance)
         {
@@ -25,9 +30,26 @@ namespace MSA_Calculator
             InitializeComponent();
         }
 
+        private void updateList()
+        {
+            list.BeginUnboundLoad();
+            list.Nodes.Clear();
+            foreach (String filename in files)
+            {
+                list.AppendNode(new object[]
+                {
+                    Path.GetFileName(filename),
+                    (File.Exists(filename) ? "Yes" : "No")
+                }, null);
+            }
+            list.EndUnboundLoad();
+        }
+
         private void HGTsDialog_Load(object sender, EventArgs e)
         {
-            List<string> files = new List<string>();
+            client.DownloadFileCompleted += Client_DownloadFileCompleted;
+
+            files = new List<string>();
             // Get values
             for (int k = 0; k < waypoints.Count - 1; k++)
             {
@@ -55,17 +77,65 @@ namespace MSA_Calculator
                 }
             }
 
-            list.BeginUnboundLoad();
-            list.Nodes.Clear();
             foreach (String filename in files)
             {
-                list.AppendNode(new object[]
+                if (!File.Exists(filename))
                 {
-                    filename,
-                    (File.Exists(filename) ? "Yes" : "No")
-                }, null);
+                    downloadList.Enqueue(Path.GetFileName(filename));
+                }
             }
-            list.EndUnboundLoad();
+
+            progressBarControl.Properties.Maximum = downloadList.Count();
+            progressBarControl.EditValue = 0;
+            progressLabel.Text = "Downloading files: 1 of " + progressBarControl.Properties.Maximum;
+
+            updateList();
+            downloadRequiredFiles();
+        }
+
+        private void downloadButton_Click(object sender, EventArgs e)
+        {
+            downloadRequiredFiles();
+        }
+
+        private void downloadRequiredFiles()
+        {
+            if (downloadList.Count > 0)
+            {
+                string file = downloadList.Peek();
+                if (!File.Exists(file))
+                {
+                    String fileName = Path.GetFileName(file);
+                    Directory.CreateDirectory("hgts/");
+                    client.DownloadFileAsync(new System.Uri("https://dds.cr.usgs.gov/srtm/version2_1/SRTM3/South_America/" + fileName + ".zip"), "hgts/" + fileName + ".zip");
+                }
+            } else
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+        }
+
+        private void Client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            string file = downloadList.Dequeue();
+            if (!File.Exists("hgts/" + file + ".zip"))
+            {
+                downloadList.Enqueue(file);
+            } else
+            {
+                System.IO.Compression.ZipFile.ExtractToDirectory("hgts/" + file + ".zip", "hgts/");
+                File.Delete("hgts/" + file + ".zip");
+                progressBarControl.EditValue = progressBarControl.Properties.Maximum - downloadList.Count();
+                progressLabel.Text = "Downloading files: " + (progressBarControl.Properties.Maximum - downloadList.Count()) + 1 + " of " + progressBarControl.Properties.Maximum;
+                updateList();
+            }
+            downloadRequiredFiles();
+        }
+
+        private void HGTsDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            client.CancelAsync();
         }
     }
 }

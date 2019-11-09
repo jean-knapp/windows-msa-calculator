@@ -88,7 +88,7 @@
             this.treeListColumn1,
             this.treeListColumn2,
             this.treeListColumn3});
-            this.waypointsListBox.Cursor = System.Windows.Forms.Cursors.SizeWE;
+            this.waypointsListBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.waypointsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.waypointsListBox.Location = new System.Drawing.Point(0, 0);
             this.waypointsListBox.Name = "waypointsListBox";

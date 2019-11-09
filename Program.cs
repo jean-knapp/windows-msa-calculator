@@ -19,7 +19,7 @@ namespace MSA_Calculator
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ToolbarForm1(args));
+            Application.Run(new Main(args));
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
