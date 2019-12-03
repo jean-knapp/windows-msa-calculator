@@ -1,5 +1,4 @@
 ﻿using GlmNet;
-using PMA;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,15 +11,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
+using PMAFileAPI;
+
 namespace MSA_Calculator
 {
     public partial class LoadRouteFromPMA : Form
     {
-        List<List<vec2>> routes;
-        List<List<XmlNode>> msas;
-
-        XmlDocument doc;
+        PMANode pmaFile;
+        List<PMANode> routes;
         int selectedRoute = 0;
+
+        List<PMANode> waypoints;
+        List<PMANode> legs;
 
         public LoadRouteFromPMA(string path)
         {
@@ -50,38 +52,108 @@ namespace MSA_Calculator
             loadRoutes(fileName);
         }
 
-        public List<vec2> getSelectedRoute()
+        public PMANode getSelectedRoute()
         {
             return routes[selectedRoute];
         }
 
-        public List<XmlNode> getSelectedRouteMSA()
+        public PMANode getPMAFile()
         {
-            return msas[selectedRoute];
-        }
-
-        public XmlDocument getFileXmlDocument()
-        {
-            return doc;
+            return pmaFile;
         }
 
         private void loadRoutes(string path)
         {
-            //PMAFile.convertToXML(path);
-            //doc = PMAFile.readXML(path);
-            doc = PMAFile.readFile(path);
+            pmaFile = PMAFile.read(path);
 
-            routes = new List<List<vec2>>();
-            msas = new List<List<XmlNode>>();
+            routes = pmaFile.findNodesByType("IObjeto");
 
-            foreach (XmlNode objectNode in doc.DocumentElement.ChildNodes)
+            for (int i = routes.Count - 1; i >= 0; i--)
             {
-                if (objectNode.SelectSingleNode("DadosComuns") != null &&
-                    objectNode.SelectSingleNode("DadosComuns").SelectSingleNode("Tipo") != null &&
-                    objectNode.SelectSingleNode("DadosComuns").SelectSingleNode("Tipo").InnerText == "NavRota")
+                PMANode dadosComunsNode = routes[i].getNodeByType("DadosComuns");
+                if (dadosComunsNode == null || !dadosComunsNode.properties.Keys.Contains("Tipo") || dadosComunsNode.properties["Tipo"] != "NavRota")
                 {
-                    pmaObjects.Items.Add(objectNode.SelectSingleNode("DadosComuns").SelectSingleNode("Nome").InnerText);
+                    routes.RemoveAt(i);
+                    continue;
+                }
+                {
+                    pmaObjects.Items.Add(routes[i].name);
+                }
+            }
+        }
 
+        public List<PMANode> getWaypoints()
+        {
+            PMANode route = getSelectedRoute();
+            List<PMANode> waypoints = new List<PMANode>();
+
+            foreach(PMANode node in route.getNodeByType("Filhos").items)
+            {
+                PMANode dadosComunsNode = node.getNodeByType("DadosComuns");
+                if (dadosComunsNode != null && dadosComunsNode.properties.Keys.Contains("Tipo"))
+                {
+                   
+                    if (dadosComunsNode.properties["Tipo"] == "NavWaypoint")
+                    {
+                        PMANode waypoint = node.getNodeByType("DadosEspecificos").getNodeByType("IObjetoNav").getNodeByType("GateIn");
+                        waypoints.Add(waypoint);
+                        MessageBox.Show(node.name + " added.");
+                    } else if (dadosComunsNode.properties["Tipo"] == "NavSeparação")
+                    {
+                        MessageBox.Show("Separação found.");
+                        Dictionary<string, PMANode> pontos = new Dictionary<string, PMANode>();
+                        foreach(PMANode ponto in node.getNodeByType("DadosEspecificos").getNodesByType("Ponto"))
+                        {
+                            pontos.Add(ponto.properties["ID"], ponto);
+                        }
+
+                        PMANode trajetoria = node.getNodeByType("DadosEspecificos").getNodeByType("Trajetória");
+
+                        List<PMANode> ptsTraj = trajetoria.getNodesByType("PtTraj");
+                        foreach(PMANode ptTraj in ptsTraj)
+                        {
+                            waypoints.Add(pontos[ptTraj.properties["ID_Referencia"]]);
+                            MessageBox.Show(node.name + " added.");
+                        }
+                    }
+                    
+                }
+            }
+
+            return waypoints;
+        }
+
+        public List<PMANode> getLegs()
+        {
+            PMANode route = getSelectedRoute();
+            List<PMANode> legs = new List<PMANode>();
+
+            foreach (PMANode node in route.getNodeByType("Filhos").items)
+            {
+                PMANode dadosComunsNode = node.getNodeByType("DadosComuns");
+                if (dadosComunsNode != null && dadosComunsNode.properties.Keys.Contains("Tipo"))
+                {
+
+                    if (dadosComunsNode.properties["Tipo"] == "NavPerna")
+                    {
+                        PMANode leg = node.getNodeByType("DadosEspecificos");
+                        legs.Add(leg);
+                    }
+                    else if (dadosComunsNode.properties["Tipo"] == "NavSeparação")
+                    {
+                        PMANode trajetoria = node.getNodeByType("DadosEspecificos").getNodeByType("Trajetória");
+                        legs.AddRange(trajetoria.getNodesByType("Segmento"));
+                    }
+
+                }
+            }
+
+            return legs;
+        }
+
+        /*private void loadRoutesOld(string path)
+        {
+            
                     List<vec2> route = new List<vec2>();
                     List<XmlNode> msa = new List<XmlNode>();
 
@@ -155,38 +227,18 @@ namespace MSA_Calculator
                             XmlNode msaNode = child.SelectSingleNode("DadosEspecificos").SelectSingleNode("Castelo_dot_NivelMinimoIFR");
                             msa.Add(msaNode);
                         }
-                    }
-                    msas.Add(msa);
-                    routes.Add(route);
-                }
-            }
 
-            if (routes.Count == 1)
-            {
-
-            } else if (routes.Count == 0)
-            {
-                MessageBox.Show("Invalid file.");
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
-            }
-        }
+        }*/
 
         private void pmaObjects_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedRoute = pmaObjects.SelectedIndex;
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void button_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
     }
 }

@@ -55,6 +55,9 @@
     <Reference Include="PMA">
       <HintPath>lib\PMA.dll</HintPath>
     </Reference>
+    <Reference Include="PMAFileAPI">
+      <HintPath>..\windows-api-file-pma\PMAFileAPI\bin\Release\PMAFileAPI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression.FileSystem" />

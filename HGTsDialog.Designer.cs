@@ -42,12 +42,13 @@
             this.list.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.treeListColumn1,
             this.treeListColumn2});
-            this.list.Cursor = System.Windows.Forms.Cursors.Default;
+            this.list.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.list.Dock = System.Windows.Forms.DockStyle.Fill;
             this.list.Location = new System.Drawing.Point(0, 0);
+            this.list.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.list.Name = "list";
             this.list.OptionsBehavior.Editable = false;
-            this.list.Size = new System.Drawing.Size(510, 318);
+            this.list.Size = new System.Drawing.Size(595, 392);
             this.list.TabIndex = 0;
             // 
             // treeListColumn1
@@ -69,29 +70,32 @@
             // progressBarControl
             // 
             this.progressBarControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBarControl.Location = new System.Drawing.Point(0, 318);
+            this.progressBarControl.Location = new System.Drawing.Point(0, 392);
+            this.progressBarControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.progressBarControl.Name = "progressBarControl";
             this.progressBarControl.Properties.Step = 1;
-            this.progressBarControl.Size = new System.Drawing.Size(510, 18);
+            this.progressBarControl.Size = new System.Drawing.Size(595, 22);
             this.progressBarControl.TabIndex = 2;
             // 
             // progressLabel
             // 
             this.progressLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressLabel.Location = new System.Drawing.Point(0, 336);
+            this.progressLabel.Location = new System.Drawing.Point(0, 414);
+            this.progressLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.progressLabel.Name = "progressLabel";
-            this.progressLabel.Size = new System.Drawing.Size(63, 13);
+            this.progressLabel.Size = new System.Drawing.Size(75, 16);
             this.progressLabel.TabIndex = 3;
             this.progressLabel.Text = "labelControl1";
             // 
             // HGTsDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(510, 349);
+            this.ClientSize = new System.Drawing.Size(595, 430);
             this.Controls.Add(this.list);
             this.Controls.Add(this.progressBarControl);
             this.Controls.Add(this.progressLabel);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "HGTsDialog";
             this.Text = "HGTsDialog";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HGTsDialog_FormClosing);

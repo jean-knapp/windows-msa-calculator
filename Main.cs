@@ -11,6 +11,8 @@ using DevExpress.XtraBars;
 using GlmNet;
 using System.Xml;
 using PMA;
+using PMAFileAPI;
+using System.Threading;
 
 namespace MSA_Calculator
 {
@@ -114,17 +116,22 @@ namespace MSA_Calculator
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    List<vec2> route = form.getSelectedRoute();
-                    msas = form.getSelectedRouteMSA();
-                    doc = form.getFileXmlDocument();
+                    PMANode pmaFile = form.getPMAFile();
+                    List<PMANode> wpts = form.getWaypoints();
+                    List<PMANode> legs = form.getLegs();
 
                     waypoints.Clear();
 
-                    for (int i = 0; i < route.Count; i++)
+                    foreach(PMANode node in wpts)
                     {
-                        waypoints.Add(route[i]);
+                        char decimalSeparator = Convert.ToChar(Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                        char thousandSeparator = Convert.ToChar(Thread.CurrentThread.CurrentCulture.NumberFormat.NumberGroupSeparator);
+
+                        float lat = float.Parse(node.properties["Posicao.Lat"].Replace('.', decimalSeparator));
+                        float lng = float.Parse((node.properties.Keys.Contains("Posicao.Long") ? node.properties["Posicao.Long"] : node.properties["Posicao.Lon"]).Replace('.', decimalSeparator));
+                        MessageBox.Show(lat + " " + lng);
+                        waypoints.Add(new vec2(lng, lat));
                     }
-                    //updateWaypointsList();
                 }
             }
             //statusBar.BackColor = Color.FromArgb(255, 0, 122, 204);
@@ -176,7 +183,7 @@ namespace MSA_Calculator
                     }
                 }
 
-                PMAFile.writeFile(path, doc);
+                //PMAFile.writeFile(path, doc);
 
                 statusBar.BackColor = Color.FromArgb(255, 0, 122, 204);
                 statusLabel.Caption = "File saved.";
