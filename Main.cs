@@ -10,19 +10,23 @@ using System.Windows.Forms;
 using DevExpress.XtraBars;
 using GlmNet;
 using System.Xml;
-using PMA;
-using PMAFileAPI;
 using System.Threading;
+using PMAFileAPI;
 
 namespace MSA_Calculator
 {
     public partial class Main : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         List<vec2> waypoints = new List<vec2>();
+        List<int> msas;
+
+        PMANode pmaFile;
+        List<PMANode> wpts;
+        List<PMANode> legs;
+
         string[] args;
 
         XmlDocument doc;
-        List<XmlNode> msas;
 
         public Main(string[] args)
         {
@@ -48,6 +52,7 @@ namespace MSA_Calculator
             Application.DoEvents();
             // Init HGT class
             HGT hgt = new HGT();
+            msas = new List<int>();
 
             // Start timer
             DateTime start_time = DateTime.Now;
@@ -87,8 +92,8 @@ namespace MSA_Calculator
                     CoordinateSelector.getGMSLatitude(CoordinateSelector.getLatitude(hgt.peakCoordinate)) + " " + CoordinateSelector.getGMSLongitude(CoordinateSelector.getLongitude(hgt.peakCoordinate))
                 }, null);
                 list.EndUnboundLoad();
-                if (msas != null && msas.Count - 1 >= i)
-                    msas[i].InnerText = msa.ToString();
+
+                msas.Add(msa);
 
                 Application.DoEvents();
 
@@ -116,9 +121,12 @@ namespace MSA_Calculator
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    PMANode pmaFile = form.getPMAFile();
-                    List<PMANode> wpts = form.getWaypoints();
-                    List<PMANode> legs = form.getLegs();
+                    pmaFile = form.getPMAFile();
+                    wpts = form.getWaypoints();
+                    legs = form.getLegs();
+
+                    MessageBox.Show(wpts.Count + " waypoints");
+                    MessageBox.Show(legs.Count + " legs");
 
                     waypoints.Clear();
 
@@ -129,7 +137,6 @@ namespace MSA_Calculator
 
                         float lat = float.Parse(node.properties["Posicao.Lat"].Replace('.', decimalSeparator));
                         float lng = float.Parse((node.properties.Keys.Contains("Posicao.Long") ? node.properties["Posicao.Long"] : node.properties["Posicao.Lon"]).Replace('.', decimalSeparator));
-                        MessageBox.Show(lat + " " + lng);
                         waypoints.Add(new vec2(lng, lat));
                     }
                 }
@@ -169,8 +176,14 @@ namespace MSA_Calculator
         {
             //statusBar.BackColor = Color.FromArgb(255, 202, 81, 0);
             statusLabel.Caption = "Saving file...";
-            if (doc != null)
+
+            if (pmaFile != null)
             {
+                for (int i = 0; i < legs.Count; i++)
+                {
+                    legs[i].properties["Castelo.NivelMinimoIFR"] = msas[i].ToString();
+                }
+
                 if (path.Length == 0)
                 {
                     SaveFileDialog x = new SaveFileDialog();
@@ -179,6 +192,8 @@ namespace MSA_Calculator
                     if ((result == DialogResult.OK))
                     {
                         path = x.FileName;
+
+                        PMAFile.write(pmaFile, path);
 
                     }
                 }
@@ -228,8 +243,9 @@ namespace MSA_Calculator
             switch(e.Item.Tag)
             {
                 case "new":
-                    doc = null;
-                    msas = null;
+                    pmaFile = null;
+                    wpts = null;
+                    legs = null;
                     break;
                 case "open":
                     loadFile("");
@@ -245,8 +261,20 @@ namespace MSA_Calculator
 
         private void manageWaypointsButton_ItemClick(object sender, ItemClickEventArgs e)
         {
+            vec2[] waypointsOld = new vec2[waypoints.Count];
+            waypoints.CopyTo(waypointsOld);
             WaypointsDialog dialog = new WaypointsDialog(waypoints);
             dialog.ShowDialog();
+            vec2[] waypointsNew = new vec2[waypoints.Count];
+            waypoints.CopyTo(waypointsNew);
+
+            if (!Enumerable.SequenceEqual(waypointsNew, waypointsOld))
+            {
+                pmaFile = null;
+                wpts = null;
+                legs = null;
+                calculateMSA();
+            }
         }
     }
 }

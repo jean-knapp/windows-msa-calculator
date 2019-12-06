@@ -69,7 +69,6 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.statusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -102,15 +101,17 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(932, 0);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1087, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 590);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 726);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(932, 0);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1087, 0);
             // 
             // barDockControlLeft
             // 
@@ -118,15 +119,17 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 590);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 726);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(932, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1087, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 590);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 726);
             // 
             // barButtonItem1
             // 
@@ -175,10 +178,11 @@
             this.treeListColumn5});
             this.list.Cursor = System.Windows.Forms.Cursors.Default;
             this.list.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.list.Location = new System.Drawing.Point(0, 147);
+            this.list.Location = new System.Drawing.Point(0, 187);
+            this.list.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.list.Name = "list";
             this.list.OptionsBehavior.Editable = false;
-            this.list.Size = new System.Drawing.Size(932, 420);
+            this.list.Size = new System.Drawing.Size(1087, 510);
             this.list.TabIndex = 6;
             // 
             // treeListColumn1
@@ -246,6 +250,7 @@
             this.montainousHeightBox,
             this.calculateButton});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ribbonControl1.MaxItemId = 10;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -255,7 +260,7 @@
             this.repositoryItemSpinEdit2,
             this.repositoryItemSpinEdit3,
             this.repositoryItemProgressBar1});
-            this.ribbonControl1.Size = new System.Drawing.Size(932, 147);
+            this.ribbonControl1.Size = new System.Drawing.Size(1087, 187);
             this.ribbonControl1.StatusBar = this.statusBar;
             // 
             // backstageViewControl1
@@ -265,10 +270,11 @@
             this.backstageViewControl1.Items.Add(this.backstageSaveButton);
             this.backstageViewControl1.Items.Add(this.backstageViewItemSeparator1);
             this.backstageViewControl1.Items.Add(this.backstageExitButton);
-            this.backstageViewControl1.Location = new System.Drawing.Point(120, 343);
+            this.backstageViewControl1.Location = new System.Drawing.Point(140, 422);
+            this.backstageViewControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.backstageViewControl1.Name = "backstageViewControl1";
             this.backstageViewControl1.OwnerControl = this.ribbonControl1;
-            this.backstageViewControl1.Size = new System.Drawing.Size(316, 150);
+            this.backstageViewControl1.Size = new System.Drawing.Size(369, 185);
             this.backstageViewControl1.TabIndex = 13;
             // 
             // backstageNewButton
@@ -304,7 +310,9 @@
             // 
             // backstageExitButton
             // 
+            this.backstageExitButton.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.backstageExitButton.Caption = "Exit";
+            this.backstageExitButton.Glyph = ((System.Drawing.Image)(resources.GetObject("backstageExitButton.Glyph")));
             this.backstageExitButton.Name = "backstageExitButton";
             this.backstageExitButton.Tag = "exit";
             this.backstageExitButton.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.backstageNewButton_ItemClick);
@@ -397,8 +405,7 @@
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2,
-            this.ribbonPageGroup3,
-            this.ribbonPageGroup4});
+            this.ribbonPageGroup3});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Home";
             // 
@@ -418,13 +425,6 @@
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Search parameters";
             // 
-            // ribbonPageGroup4
-            // 
-            this.ribbonPageGroup4.AllowTextClipping = false;
-            this.ribbonPageGroup4.ItemLinks.Add(this.calculateButton);
-            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "MSA";
-            // 
             // repositoryItemProgressBar1
             // 
             this.repositoryItemProgressBar1.Name = "repositoryItemProgressBar1";
@@ -432,10 +432,11 @@
             // statusBar
             // 
             this.statusBar.ItemLinks.Add(this.statusLabel);
-            this.statusBar.Location = new System.Drawing.Point(0, 567);
+            this.statusBar.Location = new System.Drawing.Point(0, 697);
+            this.statusBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.statusBar.Name = "statusBar";
             this.statusBar.Ribbon = this.ribbonControl1;
-            this.statusBar.Size = new System.Drawing.Size(932, 23);
+            this.statusBar.Size = new System.Drawing.Size(1087, 29);
             // 
             // ribbonPage6
             // 
@@ -444,9 +445,9 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 590);
+            this.ClientSize = new System.Drawing.Size(1087, 726);
             this.Controls.Add(this.backstageViewControl1);
             this.Controls.Add(this.list);
             this.Controls.Add(this.ribbonControl1);
@@ -455,6 +456,8 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Main";
             this.Ribbon = this.ribbonControl1;
             this.StatusBar = this.statusBar;
@@ -511,7 +514,6 @@
         private DevExpress.XtraBars.BarEditItem montainousHeightBox;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit3;
         private DevExpress.XtraBars.BarButtonItem calculateButton;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.Ribbon.BackstageViewButtonItem backstageNewButton;
         private DevExpress.XtraBars.Ribbon.BackstageViewButtonItem backstageOpenButton;
         private DevExpress.XtraBars.Ribbon.BackstageViewButtonItem backstageSaveButton;

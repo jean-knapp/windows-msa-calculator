@@ -97,10 +97,8 @@ namespace MSA_Calculator
                     {
                         PMANode waypoint = node.getNodeByType("DadosEspecificos").getNodeByType("IObjetoNav").getNodeByType("GateIn");
                         waypoints.Add(waypoint);
-                        MessageBox.Show(node.name + " added.");
                     } else if (dadosComunsNode.properties["Tipo"] == "NavSeparação")
                     {
-                        MessageBox.Show("Separação found.");
                         Dictionary<string, PMANode> pontos = new Dictionary<string, PMANode>();
                         foreach(PMANode ponto in node.getNodeByType("DadosEspecificos").getNodesByType("Ponto"))
                         {
@@ -113,7 +111,6 @@ namespace MSA_Calculator
                         foreach(PMANode ptTraj in ptsTraj)
                         {
                             waypoints.Add(pontos[ptTraj.properties["ID_Referencia"]]);
-                            MessageBox.Show(node.name + " added.");
                         }
                     }
                     
