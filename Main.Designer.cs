@@ -38,7 +38,6 @@
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -102,15 +101,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(932, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(946, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 590);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 591);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(932, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(946, 0);
             // 
             // barDockControlLeft
             // 
@@ -118,15 +117,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 590);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 591);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(932, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(946, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 590);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 591);
             // 
             // barButtonItem1
             // 
@@ -145,10 +144,6 @@
             this.barButtonItem3.Caption = "barButtonItem3";
             this.barButtonItem3.Id = 2;
             this.barButtonItem3.Name = "barButtonItem3";
-            // 
-            // defaultLookAndFeel1
-            // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Visual Studio 2013 Dark";
             // 
             // ribbonPage2
             // 
@@ -175,10 +170,10 @@
             this.treeListColumn5});
             this.list.Cursor = System.Windows.Forms.Cursors.Default;
             this.list.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.list.Location = new System.Drawing.Point(0, 147);
+            this.list.Location = new System.Drawing.Point(0, 162);
             this.list.Name = "list";
             this.list.OptionsBehavior.Editable = false;
-            this.list.Size = new System.Drawing.Size(932, 420);
+            this.list.Size = new System.Drawing.Size(946, 407);
             this.list.TabIndex = 6;
             // 
             // treeListColumn1
@@ -255,7 +250,7 @@
             this.repositoryItemSpinEdit2,
             this.repositoryItemSpinEdit3,
             this.repositoryItemProgressBar1});
-            this.ribbonControl1.Size = new System.Drawing.Size(932, 147);
+            this.ribbonControl1.Size = new System.Drawing.Size(946, 162);
             this.ribbonControl1.StatusBar = this.statusBar;
             // 
             // backstageViewControl1
@@ -275,7 +270,7 @@
             // 
             this.backstageNewButton.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.backstageNewButton.Caption = "New";
-            this.backstageNewButton.Glyph = ((System.Drawing.Image)(resources.GetObject("backstageNewButton.Glyph")));
+            this.backstageNewButton.ImageOptions.ItemNormal.Image = ((System.Drawing.Image)(resources.GetObject("backstageNewButton.ImageOptions.ItemNormal.Image")));
             this.backstageNewButton.Name = "backstageNewButton";
             this.backstageNewButton.Tag = "new";
             this.backstageNewButton.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.backstageNewButton_ItemClick);
@@ -284,7 +279,7 @@
             // 
             this.backstageOpenButton.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.backstageOpenButton.Caption = "Open from PMA File";
-            this.backstageOpenButton.Glyph = ((System.Drawing.Image)(resources.GetObject("backstageOpenButton.Glyph")));
+            this.backstageOpenButton.ImageOptions.ItemNormal.Image = ((System.Drawing.Image)(resources.GetObject("backstageOpenButton.ImageOptions.ItemNormal.Image")));
             this.backstageOpenButton.Name = "backstageOpenButton";
             this.backstageOpenButton.Tag = "open";
             this.backstageOpenButton.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.backstageNewButton_ItemClick);
@@ -293,7 +288,7 @@
             // 
             this.backstageSaveButton.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.backstageSaveButton.Caption = "Save to PMA File";
-            this.backstageSaveButton.Glyph = ((System.Drawing.Image)(resources.GetObject("backstageSaveButton.Glyph")));
+            this.backstageSaveButton.ImageOptions.ItemNormal.Image = ((System.Drawing.Image)(resources.GetObject("backstageSaveButton.ImageOptions.ItemNormal.Image")));
             this.backstageSaveButton.Name = "backstageSaveButton";
             this.backstageSaveButton.Tag = "save";
             this.backstageSaveButton.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.backstageNewButton_ItemClick);
@@ -432,10 +427,10 @@
             // statusBar
             // 
             this.statusBar.ItemLinks.Add(this.statusLabel);
-            this.statusBar.Location = new System.Drawing.Point(0, 567);
+            this.statusBar.Location = new System.Drawing.Point(0, 569);
             this.statusBar.Name = "statusBar";
             this.statusBar.Ribbon = this.ribbonControl1;
-            this.statusBar.Size = new System.Drawing.Size(932, 23);
+            this.statusBar.Size = new System.Drawing.Size(946, 22);
             // 
             // ribbonPage6
             // 
@@ -446,7 +441,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 590);
+            this.ClientSize = new System.Drawing.Size(946, 591);
             this.Controls.Add(this.backstageViewControl1);
             this.Controls.Add(this.list);
             this.Controls.Add(this.ribbonControl1);
@@ -483,7 +478,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage4;
