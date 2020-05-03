@@ -153,7 +153,7 @@ namespace MSA_Calculator
             string i = (x / (double)Math.Abs(x) < 0 ? "W" : "E") + i_abs;
             string j = (y / (double)Math.Abs(y) < 0 ? "S" : "N") + j_abs;
 
-            return Application.StartupPath + "/hgts/" + j + i + ".hgt";
+            return Application.StartupPath + "/Hgts/" + j + i + ".hgt";
         }
 
         // Objective:   Process a line of bytes of an elevation file and convert it to short values of elevation
