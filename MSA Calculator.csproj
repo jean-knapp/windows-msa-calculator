@@ -162,6 +162,8 @@
 RD /S /Q "$(TargetDir)es"
 RD /S /Q "$(TargetDir)ja"
 RD /S /Q "$(TargetDir)ru"
+del "$(TargetDir)*.xml"
+del "$(TargetDir)*.pdb"
 ; Move all assemblies and related files to lib folder
 ROBOCOPY "$(TargetDir) " "$(TargetDir)Libs\ " /XF *.exe *.config /XD Libs Hgts /E /IS /MOVE
 ; if %25errorlevel%25 leq 4 exit 0 else exit %25errorlevel%25</PostBuildEvent>
